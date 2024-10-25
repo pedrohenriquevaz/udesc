@@ -5,10 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         actor.classList.remove('jump');
     });
 
-    document.addEventListener('keydown', function(event) {
-        console.log('Tecla pressionada:', event.key); 
-
-      
+    document.addEventListener('keydown', function(event) {  
         if (event.key === ' ') {
             actor.classList.add('jump');
         }
