@@ -9,4 +9,57 @@
     height: 500px;
     border: 1px solid #03a000;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.fench {
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    right: -100px;
+    animation: fench-animation 1s infinite linear;
+}
+
+@keyframes fench-animation {
+    from {
+        right: -100px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+.actor {
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+ /*    animation: jump 500ms linear; */
+}
+
+@keyframes jump {
+    0% {
+        bottom: 0;
+    }
+
+    40% {
+        bottom: 180px;
+    }
+
+    50% {
+        bottom: 180px;
+    }
+
+    60% {
+        bottom: 180px;
+    } 
+
+    100% {
+        bottom: 0;
+    }
+}
+
+.actor.jump {
+    animation: jump 500ms linear ; 
 }
