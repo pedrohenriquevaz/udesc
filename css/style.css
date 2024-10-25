@@ -4,13 +4,35 @@
     box-sizing: border-box;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    overflow: hidden; 
+}
+
 .game-board {
+ /*    width: 100vw;
+    height: 100vh; */
     width: 80%;
     height: 500px;
     border: 1px solid #03a000;
+  /*   border: hidden; */
     margin: 0 auto;
     position: relative;
     overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; 
 }
 
 .fench {
@@ -18,7 +40,7 @@
     bottom: 0;
     width: 100px;
     right: -100px;
-    animation: fench-animation 1s infinite linear;
+    animation: fench-animation 10s infinite linear;
 }
 
 @keyframes fench-animation {
