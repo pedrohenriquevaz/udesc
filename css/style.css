@@ -4,22 +4,12 @@
     box-sizing: border-box;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    overflow: hidden; 
-}
-
 .game-board {
- /*    width: 100vw;
+/*     width: 100vw;
     height: 100vh; */
-    width: 80%;
-    height: 500px;
-    border: 1px solid #03a000;
-  /*   border: hidden; */
+    width: 60%;
+    height: 600px; 
+    border: hidden;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -32,18 +22,18 @@ html, body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1; 
+    z-index: -1;
 }
 
-.fench {
+.icon {
     position: absolute;
     bottom: 0;
     width: 100px;
     right: -100px;
-    animation: fench-animation 5s infinite linear;
+    animation: icon-animation 2s infinite linear;
 }
 
-@keyframes fench-animation {
+@keyframes icon-animation {
     from {
         right: -100px;
     }
@@ -63,24 +53,14 @@ html, body {
     0% {
         bottom: 0;
     }
-
-    40% {
+    40%, 50%, 60% {
         bottom: 180px;
     }
-
-    50% {
-        bottom: 180px;
-    }
-
-    60% {
-        bottom: 180px;
-    } 
-
     100% {
         bottom: 0;
     }
 }
 
 .actor.jump {
-    animation: jump 500ms linear ; 
+    animation: jump 500ms ease-out; 
 }
