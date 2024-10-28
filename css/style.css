@@ -4,11 +4,67 @@
     box-sizing: border-box;
 }
 
+.character-selection {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.character-option {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s, border 0.2s;
+}
+
+.character-option:hover {
+    transform: scale(1.05);
+    border: 3px solid green;
+    border-radius: 5px;
+}
+
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/iniciar.gif');
+    color: white;
+    font-size: 2rem;
+    z-index: 10;
+}
+
+#start-button {
+    margin-top: 20px;
+    padding: 15px 30px; 
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: #200ae6; 
+    color: white;
+    border: none; 
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+#start-button:hover {
+    background-color: #3143e9; 
+    transform: translateY(-2px);
+}
+
+#start-button:active {
+    transform: translateY(0); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
 .game-board {
-/*     width: 100vw;
-    height: 100vh; */
-    width: 60%;
-    height: 600px; 
+    width: 100vw;
+    height: 100vh; 
     border: hidden;
     margin: 0 auto;
     position: relative;
