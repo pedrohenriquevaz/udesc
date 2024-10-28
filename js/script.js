@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const actor = document.querySelector('.actor');
     const icon = document.querySelector('.icon');
-    const images = ["fench.png", "js.png", "java.png", "php.png", , "postgresql.png"];
+    const images = ["fench.png", "js.png", "java.png", "php.png", "postgresql.png"];
     const gameBoard = document.querySelector('.game-board');
     const startScreen = document.querySelector('.start-screen');
     const startButton = document.getElementById('start-button');
@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         option.addEventListener('click', (event) => {
             selectedCharacter = event.target.getAttribute('data-character');
 
-/*             characterOptions.forEach(opt => {
+            characterOptions.forEach(opt => {
                 opt.classList.remove('selected');
-            }); */
+            });
     
             event.target.classList.add('selected');
         });
