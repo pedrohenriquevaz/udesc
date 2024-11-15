@@ -5,35 +5,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const startScreen = document.querySelector('.start-screen');
     const startButton = document.getElementById('start-button');
     const characterOptions = document.querySelectorAll('.character-option');
+    const playerNameInput = document.getElementById('player-name');
+    const scoreDisplay = document.getElementById('score-display');
+    const leaderboardList = document.getElementById('leaderboard-list');
 
     const images = ["fench.png", "js.png", "java.png", "php.png", "postgresql.png"];
     let selectedCharacter = './images/actor.gif';
     let score = 0;
     let scoreInterval = null;
     let gameActive = false;
+    let playerName = '';
+
+    function loadLeaderboard() {
+        const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+        leaderboardList.innerHTML = '';
+        leaderboard.forEach(entry => {
+            const li = document.createElement('li');
+            li.textContent = `${entry.name} - ${entry.score}`;
+            leaderboardList.appendChild(li);
+        });
+    }
+
+    function saveLeaderboard(name, score) {
+        const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+        leaderboard.push({ name, score });
+        leaderboard.sort((a, b) => b.score - a.score); // Sort by score in descending order
+        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+        loadLeaderboard();
+    }
 
     characterOptions.forEach(option => {
         option.addEventListener('click', (event) => {
             selectedCharacter = event.target.getAttribute('data-character');
-    
             characterOptions.forEach(opt => {
                 opt.classList.remove('selected');
             });
-        
             event.target.classList.add('selected');
         });
     });
 
     function startGame() {
+        if (!playerName) {
+            alert("Por favor, insira seu nome!");
+            return;
+        }
+
         actor.src = selectedCharacter;
         startScreen.style.display = 'none';
         gameBoard.style.display = 'block';
         score = 0;
 
-        const scoreDisplay = document.createElement('div');
-        scoreDisplay.className = 'score';
         scoreDisplay.textContent = `Score: ${score}`;
-        document.body.appendChild(scoreDisplay);
 
         scoreInterval = setInterval(() => {
             score += 1;
@@ -41,9 +63,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
+    function updateScore() {
+        score += 1;
+        scoreDisplay.textContent = `Score: ${score}`;
+        scoreDisplay.classList.add('score-updated');
+        setTimeout(() => scoreDisplay.classList.remove('score-updated'), 500);
+    }
+
     function stopGame() {
         gameActive = false;
         clearInterval(scoreInterval);
+        saveLeaderboard(playerName, score);
         showGameOver();
     }
 
@@ -66,16 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
         icon.src = `./images/${images[randomIndex]}`;
         icon.className = `icon ${speedClass}`;
     }
-
-    function updateScore() {
-        score += 1;
-        const scoreDisplay = document.querySelector('.score');
-        scoreDisplay.textContent = `Score: ${score}`;
-        scoreDisplay.classList.add('score-updated');
-        setTimeout(() => scoreDisplay.classList.remove('score-updated'), 500);
-    }
-
-    startButton.addEventListener('click', startGame);
+    startButton.addEventListener('click', () => {
+        playerName = playerNameInput.value.trim();
+        startGame();
+    });
 
     actor.addEventListener('animationend', () => actor.classList.remove('jump'));
 
@@ -105,4 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
             changeiconImage();
         }
     }, 10);
+
+    loadLeaderboard(); 
 });

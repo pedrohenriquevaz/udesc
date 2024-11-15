@@ -12,15 +12,29 @@
 <body>
 
     <div class="start-screen">
+        
+        <!-- Campo para digitar o nome do jogador -->
+        <input type="text" id="player-name" placeholder="Digite seu nome" />
+
         <div class="character-selection">
             <img src="./images/zero-motoca.gif" class="character-option" data-character="./images/zero-motoca.gif" alt="Personagem 1">
             <img src="./images/zero.gif" class="character-option" data-character="./images/zero.gif" alt="Personagem 2">
             <img src="./images/actor.gif" class="character-option" data-character="./images/actor.gif" alt="Personagem 3">
         </div>
-        <button id="start-button">INCIAR</button>
+        <button id="start-button">INICIAR</button>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+            <h2>Leaderboard</h2>
+            <ul id="leaderboard-list"></ul>
+        </div>
     </div>
 
     <div class="game-board" style="display: none;">
+        <div class="player-info">
+            <span id="player-name-display"></span>
+            <span id="score-display">Score: 0</span>
+        </div>
         <img src="./images/actor.gif" class="actor">
         <img src="./images/fench.png" class="icon">
         <img src="./images/background.gif" class="background">
