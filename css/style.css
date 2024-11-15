@@ -4,6 +4,30 @@
     box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+    .character-selection {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .character-option {
+        width: 80px; 
+    }
+
+    #start-button {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+    }
+
+    .actor {
+        width: 100px;
+    }
+
+    .icon {
+        width: 80px;
+    }
+}
+
 .character-selection {
     display: flex;
     gap: 15px;
