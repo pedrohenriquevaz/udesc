@@ -43,6 +43,17 @@
     z-index: 20;
 }
 
+.score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 15;
+}
+
 .character-selection {
     display: flex;
     gap: 15px;

@@ -26,6 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
         gameBoard.style.display = 'block'; 
     }
 
+    let score = 0;
+    const scoreDisplay = document.createElement('div');
+    scoreDisplay.className = 'score';
+    scoreDisplay.textContent = `Score: ${score}`;
+    document.body.appendChild(scoreDisplay);
+
+    function updateScore() {
+        score += 1;
+        scoreDisplay.textContent = `Score: ${score}`;
+    }
+
+    setInterval(updateScore, 1000); 
+
+
     function changeiconImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
         icon.src = `./images/${images[randomIndex]}`;
