@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    
     function startGame() {
         actor.src = selectedCharacter; 
         startScreen.style.display = 'none'; 
@@ -42,7 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function changeiconImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
+        const speedClass = Math.random() > 0.5 ? 'icon-fast' : 'icon-slow';
         icon.src = `./images/${images[randomIndex]}`;
+        icon.className = `icon ${speedClass}`; // Altera a velocidade
     }
 
     startButton.addEventListener('click', startGame);
