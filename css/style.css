@@ -9,10 +9,10 @@ body {
     overflow: hidden; 
 }
 
-#welcome-text, #select-character-text {
+#select-character-text {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    color: rgb(25, 64, 238);
+    color: rgb(183, 247, 9);
     margin-bottom: 20px;
     opacity: 0;
     animation: fadeInUp 1.5s forwards;
@@ -48,7 +48,7 @@ body {
 }
 
 
-h1, h2 {
+h2 {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
     margin-bottom: 20px;
@@ -82,14 +82,24 @@ h1, h2 {
     }
 }
 
-
 #player-name {
     margin-top: 20px;
-    padding: 10px;
+    padding: 15px; 
     font-size: 1.2rem;
-    border: 2px solid #200ae6;
-    border-radius: 5px;
-    text-align: center;
+    border: 2px solid #ffcc00; 
+    border-radius: 8px; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: #fff;
+    text-align: center; 
+    width: 250px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    transition: background-color 0.3s, box-shadow 0.3s ease; 
+}
+
+#player-name:focus {
+    outline: none; 
+    border-color: #ff9900; 
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8); 
 }
 
 .name-input {
@@ -186,12 +196,30 @@ h1, h2 {
     border: 3px solid #ffcc00;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+#welcome-text {
+    font-size: 4rem;
     font-weight: bold;
-    opacity: 0;
-    animation: fadeIn 1.5s forwards;
+    color: #035bff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); 
+    letter-spacing: 2px;
+    animation: pulse 2s infinite; 
+    margin-bottom: 30px; 
+    text-transform: uppercase; 
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1); 
+        text-shadow: 2px 2px 8px rgba(43, 233, 18, 0.5); 
+    }
+    50% {
+        transform: scale(1.1); 
+        text-shadow: 2px 2px 15px rgba(0, 255, 13, 0.8); 
+    }
+    100% {
+        transform: scale(1); 
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); 
+    }
 }
 
 #start-button {
