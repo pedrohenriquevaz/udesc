@@ -4,95 +4,13 @@
     box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-    .character-selection {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .character-option {
-        width: 80px; 
-    }
-
-    #start-button {
-        padding: 10px 20px;
-        font-size: 1.2rem;
-    }
-
-    .actor {
-        width: 100px;
-    }
-
-    .icon {
-        width: 80px;
-    }
-}
-
-.game-over {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.9);
-    color: #fff;
-    font-size: 2rem;
-    padding: 30px 50px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    display: none; 
-    z-index: 20;
-}
-.score {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 1.8rem;
-    color: #fffefe;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    z-index: 15;
-}
-
-.score-updated {
-    animation: pulse 0.5s ease;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.character-selection {
-    display: flex;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.character-option {
-    width: 100px;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.2s, border 0.2s;
-}
-
-.character-option:hover {
-    transform: scale(1.05);
-    border: 3px solid green;
-    border-radius: 5px;
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Evitar barras de rolagem */
 }
 
 .start-screen {
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -103,43 +21,93 @@
     align-items: center;
     background-image: url('../images/iniciar.gif');
     background-size: cover;
-    background-position: center; 
+    background-position: center;
     background-repeat: no-repeat;
-    font-size: 2rem;
-    z-index: 10; 
+    z-index: 10;
+    text-align: center;
+    color: white;
+}
+
+.character-selection {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.character-option {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s, border 0.2s;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.character-option:hover {
+    transform: scale(1.1);
+    border: 3px solid #ffcc00;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
 }
 
 #start-button {
     margin-top: 20px;
-    padding: 15px 30px; 
+    padding: 15px 30px;
     font-size: 1.5rem;
     cursor: pointer;
-    background-color: #200ae6; 
+    background-color: #200ae6;
     color: white;
-    border: none; 
+    border: none;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s;
+    animation: buttonFadeIn 1.5s forwards;
+}
+
+@keyframes buttonFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 #start-button:hover {
-    background-color: #3143e9; 
+    background-color: #3143e9;
     transform: translateY(-2px);
 }
 
 #start-button:active {
-    transform: translateY(0); 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .game-board {
     width: 100vw;
-    height: 100vh; 
-    border: hidden;
-    margin: 0 auto;
+    height: 100vh;
     position: relative;
     overflow: hidden;
-    z-index: 1;
+    display: none;
 }
 
 .background {
@@ -157,22 +125,6 @@
     bottom: 0;
     width: 100px;
     right: -100px;
-    animation: icon-animation 2s infinite linear;
-}
-
-.icon-fast {
-    animation: icon-animation 1.5s infinite linear;
-}
-
-.icon-most-fast {
-    animation: icon-animation 0.9s infinite linear;
-}
-
-.icon-slow {
-    animation: icon-animation 1.7s infinite linear;
-}
-
-.icon-normal {
     animation: icon-animation 2s infinite linear;
 }
 
@@ -205,5 +157,37 @@
 }
 
 .actor.jump {
-    animation: jump 500ms ease-out; 
+    animation: jump 500ms ease-out;
+}
+
+.score {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.8rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 15;
+}
+
+.game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 40px;
+    border-radius: 10px;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.game-over:hover {
+    background: rgba(255, 0, 0, 0.8);
 }
