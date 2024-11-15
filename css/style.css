@@ -130,7 +130,20 @@ h1 {
     bottom: 0;
     width: 100px;
     right: -100px;
-    animation: icon-animation 2s infinite linear;
+    animation: icon-animation 2s infinite linear; 
+    transition: opacity 0.3s ease-out;
+}
+
+.icon-fast {
+    animation: icon-animation 1.5s infinite linear;
+}
+
+.icon-slow {
+    animation: icon-animation 2.4s infinite linear; 
+}
+
+.icon-normal {
+    animation: icon-animation 2s infinite linear; 
 }
 
 @keyframes icon-animation {
