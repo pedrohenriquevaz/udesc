@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function showGameOver() {
+        const gameOverMessage = document.createElement('div');
+        gameOverMessage.className = 'game-over';
+        gameOverMessage.textContent = 'Game Over! Tente novamente.';
+        document.body.appendChild(gameOverMessage);
+        setTimeout(() => {
+            location.reload(); // Reiniciar o jogo
+        }, 3000);
+    }
 
     const gameOver = setInterval(() => {
         const iconPosition = icon.offsetLeft;
@@ -57,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             actor.style.bottom = `${actorPosition}px`;
 
             clearInterval(gameOver);
+            showGameOver();
         } 
         
         if (iconPosition < 0) {

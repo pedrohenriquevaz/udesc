@@ -28,6 +28,21 @@
     }
 }
 
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 2rem;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: none; /* Exibir com JS */
+    z-index: 20;
+}
+
 .character-selection {
     display: flex;
     gap: 15px;
