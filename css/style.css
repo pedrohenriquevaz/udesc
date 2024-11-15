@@ -146,8 +146,16 @@
     animation: icon-animation 1.5s infinite linear;
 }
 
+.icon-most-fast {
+    animation: icon-animation 0.9s infinite linear;
+}
+
 .icon-slow {
-    animation: icon-animation 3s infinite linear;
+    animation: icon-animation 1.7s infinite linear;
+}
+
+.icon-normal {
+    animation: icon-animation 2s infinite linear;
 }
 
 @keyframes icon-animation {
