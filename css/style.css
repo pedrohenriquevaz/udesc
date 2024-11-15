@@ -9,6 +9,24 @@ body {
     overflow: hidden; 
 }
 
+#welcome-text, #select-character-text {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: rgb(25, 64, 238);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 1.5s forwards;
+}
+
+#select-character-text {
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+#welcome-text {
+    font-size: 3rem;
+} 
+
 .start-screen {
     position: fixed;
     top: 0;
@@ -19,14 +37,51 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('../images/iniciar.gif');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(45deg, #2a1a70, #8b46a7);
+    background-image: url('../images/background-math-2.jpg');
     background-repeat: no-repeat;
-    z-index: 10;
-    text-align: center;
+    background-size: cover;
     color: white;
+    text-align: center;
+    z-index: 10;
+    overflow: hidden;
 }
+
+
+h1, h2 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 1.5s forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseText {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 
 #player-name {
     margin-top: 20px;
@@ -97,10 +152,10 @@ body {
 
 .character-selection {
     display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 20px;
+    margin-top: 30px;
     opacity: 0;
-    animation: fadeIn 1.5s forwards;
+    animation: fadeInUp 1.5s forwards;
 }
 
 .selected {
@@ -144,13 +199,28 @@ h1 {
     padding: 15px 30px;
     font-size: 1.5rem;
     cursor: pointer;
-    background-color: #200ae6;
+    background-color: #002fff;
     color: white;
     border: none;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease, transform 0.2s;
-    animation: buttonFadeIn 1.5s forwards;
+    animation: fadeInUp 1.5s forwards, pulseButton 1.5s infinite alternate;
+}
+
+@keyframes pulseButton {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 @keyframes buttonFadeIn {
@@ -165,7 +235,7 @@ h1 {
 }
 
 #start-button:hover {
-    background-color: #3143e9;
+    background-color: #2999bb;
     transform: translateY(-2px);
 }
 
