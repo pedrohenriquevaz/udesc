@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    overflow: hidden; /* Evitar barras de rolagem */
+    overflow: hidden; 
 }
 
 .start-screen {
@@ -34,6 +34,11 @@ body {
     margin-bottom: 30px;
     opacity: 0;
     animation: fadeIn 1.5s forwards;
+}
+
+.selected {
+    border: 3px solid #ffcc00; 
+    box-shadow: 0 0 15px 5px rgba(255, 204, 0, 0.7);
 }
 
 @keyframes fadeIn {

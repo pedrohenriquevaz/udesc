@@ -15,7 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     characterOptions.forEach(option => {
         option.addEventListener('click', (event) => {
             selectedCharacter = event.target.getAttribute('data-character');
-            characterOptions.forEach(opt => opt.classList.remove('selected'));
+    
+            characterOptions.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+        
             event.target.classList.add('selected');
         });
     });
