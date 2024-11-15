@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!gameOverMessage) {
             gameOverMessage = document.createElement('div');
             gameOverMessage.className = 'game-over';
-            gameOverMessage.textContent = 'Game Over! Clique para reiniciar.';
+            gameOverMessage.textContent = 'Você perdeu! Clique para retornar à tela inicial.';
             document.body.appendChild(gameOverMessage);
         }
     
