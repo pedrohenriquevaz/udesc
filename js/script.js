@@ -20,25 +20,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    let score = 0;
+    let scoreInterval;
     
     function startGame() {
         actor.src = selectedCharacter; 
         startScreen.style.display = 'none'; 
         gameBoard.style.display = 'block'; 
+
+        score = 0;
+        const scoreDisplay = document.querySelector('.score');
+        scoreDisplay.textContent = `Score: ${score}`;
+        scoreInterval = setInterval(updateScore, 1000);
     }
 
-    let score = 0;
-    const scoreDisplay = document.createElement('div');
-    scoreDisplay.className = 'score';
-    scoreDisplay.textContent = `Score: ${score}`;
-    document.body.appendChild(scoreDisplay);
+//    let score = 0;
+//    let scoreInterval;
+
+//    const scoreDisplay = document.createElement('div');
+//    scoreDisplay.className = 'score';
+//    scoreDisplay.textContent = `Score: ${score}`;
+//    document.body.appendChild(scoreDisplay);
 
     function updateScore() {
         score += 1;
+        const scoreDisplay = document.querySelector('.score');
         scoreDisplay.textContent = `Score: ${score}`;
     }
 
     setInterval(updateScore, 1000); 
+
+    const scoreDisplay = document.createElement('div');
+    scoreDisplay.className = 'score';
+    scoreDisplay.textContent = `Score: ${score}`;
+    document.body.appendChild(scoreDisplay);
 
     function changeiconImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
@@ -88,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             actor.style.bottom = `${actorPosition}px`;
 
             clearInterval(gameOver);
+            clearInterval(scoreInterval);
             showGameOver();
         } 
         
