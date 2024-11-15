@@ -21,31 +21,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     let score = 0;
-    let scoreInterval;
+    let scoreInterval = null; 
+    let gameActive = false;
     
     function startGame() {
         actor.src = selectedCharacter; 
         startScreen.style.display = 'none'; 
-        gameBoard.style.display = 'block'; 
+        gameBoard.style.display = 'block';  
 
         score = 0;
-        const scoreDisplay = document.querySelector('.score');
+
+        const scoreDisplay = document.createElement('div');
+        scoreDisplay.className = 'score';
         scoreDisplay.textContent = `Score: ${score}`;
-        scoreInterval = setInterval(updateScore, 1000);
+
+        document.body.appendChild(scoreDisplay);   
+        scoreDisplay.textContent = `Score: ${score}`;
+
+        scoreInterval = setInterval(() => {
+            score += 1;
+            scoreDisplay.textContent = `Score: ${score}`;
+        }, 1000);
     }
 
-//    let score = 0;
-//    let scoreInterval;
-
-//    const scoreDisplay = document.createElement('div');
-//    scoreDisplay.className = 'score';
-//    scoreDisplay.textContent = `Score: ${score}`;
-//    document.body.appendChild(scoreDisplay);
 
     function updateScore() {
         score += 1;
         const scoreDisplay = document.querySelector('.score');
         scoreDisplay.textContent = `Score: ${score}`;
+        scoreDisplay.classList.add('score-updated');
+        setTimeout(() => scoreDisplay.classList.remove('score-updated'), 500);
     }
 
     setInterval(updateScore, 1000); 
@@ -90,6 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function stopGame() {
+        gameActive = false;
+        clearInterval(scoreInterval); // Para o contador de pontuação
+        showGameOver(); // Exibe a mensagem de Game Over
+    }
+
     const gameOver = setInterval(() => {
         const iconPosition = icon.offsetLeft;
         const actorPosition = Number(window.getComputedStyle(actor).bottom.replace('px', ''));
@@ -105,6 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(gameOver);
             clearInterval(scoreInterval);
             showGameOver();
+            stopGame();
+            clearInterval(gameOver);
         } 
         
         if (iconPosition < 0) {

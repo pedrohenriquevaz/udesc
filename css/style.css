@@ -56,6 +56,22 @@
     z-index: 15;
 }
 
+.score-updated {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .character-selection {
     display: flex;
     gap: 15px;
