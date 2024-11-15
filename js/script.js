@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(updateScore, 1000); 
 
-
     function changeiconImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
         const speedClass = Math.random() > 0.5 ? 'icon-fast' : 'icon-slow';
@@ -61,13 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function showGameOver() {
-        const gameOverMessage = document.createElement('div');
-        gameOverMessage.className = 'game-over';
-        gameOverMessage.textContent = 'Game Over! Tente novamente.';
-        document.body.appendChild(gameOverMessage);
-        setTimeout(() => {
-            location.reload(); // Reiniciar o jogo
-        }, 3000);
+        let gameOverMessage = document.querySelector('.game-over');
+        if (!gameOverMessage) {
+            gameOverMessage = document.createElement('div');
+            gameOverMessage.className = 'game-over';
+            gameOverMessage.textContent = 'Game Over! Clique para reiniciar.';
+            document.body.appendChild(gameOverMessage);
+        }
+    
+        gameOverMessage.style.display = 'block';
+    
+        gameOverMessage.addEventListener('click', () => {
+            location.reload();
+        });
     }
 
     const gameOver = setInterval(() => {
