@@ -142,6 +142,14 @@
     animation: icon-animation 2s infinite linear;
 }
 
+.icon-fast {
+    animation: icon-animation 1.5s infinite linear;
+}
+
+.icon-slow {
+    animation: icon-animation 3s infinite linear;
+}
+
 @keyframes icon-animation {
     from {
         right: -100px;
