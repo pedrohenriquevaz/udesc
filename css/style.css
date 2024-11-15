@@ -60,12 +60,15 @@ body {
 }
 
 .leaderboard {
-    margin-top: 20px;
+    position: fixed;
+    top: 10%; 
+    right: 10%; 
     background: rgba(0, 0, 0, 0.6);
     padding: 15px;
     border-radius: 10px;
     color: white;
     max-width: 300px;
+    z-index: 20; 
 }
 
 .leaderboard h2 {
