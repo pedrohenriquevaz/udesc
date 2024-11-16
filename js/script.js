@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let scoreInterval = null;
     let gameActive = false;
     let playerName = '';
+    let gameOverInterval;
 
     function loadLeaderboard() {
         const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveLeaderboard(name, score) {
         const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
         leaderboard.push({ name, score });
-        leaderboard.sort((a, b) => b.score - a.score); // Sort by score in descending order
+        leaderboard.sort((a, b) => b.score - a.score);
         localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
         loadLeaderboard();
     }
@@ -45,23 +46,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    function gameOverVerify() {
+        const iconPosition = icon.offsetLeft;
+        const actorPosition = Number(window.getComputedStyle(actor).bottom.replace('px', ''));
+
+        if (iconPosition <= 120 && iconPosition > 0 && actorPosition < 70) {
+            icon.style.left = `${iconPosition}px`;
+            icon.style.animation = 'none';
+
+            actor.style.bottom = `${actorPosition}px`;
+            actor.style.animation = 'none';
+
+            clearInterval(gameOverInterval);
+            clearInterval(scoreInterval);
+
+            generateMathQuestion();
+            showMathQuestion();
+        }
+
+        if (iconPosition < 0) {
+            changeIconImage();
+        }
+    }
+
     function startGame() {
         if (!playerName) {
             alert("Por favor, insira seu nome!");
             return;
         }
-
+    
         actor.src = selectedCharacter;
         startScreen.style.display = 'none';
         gameBoard.style.display = 'block';
         score = 0;
-
+    
         scoreDisplay.textContent = `Score: ${score}`;
-
+    
         scoreInterval = setInterval(() => {
-            score += 1;
-            scoreDisplay.textContent = `Score: ${score}`;
+            updateScore();
         }, 1000);
+    
+        changeIconImage();
+    
+        gameOverInterval = setInterval(() => {
+            gameOverVerify();
+        }, 10);
     }
 
     function restartRanking() {
@@ -116,12 +145,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function resetPositions() {
+        icon.style.right = '-100px';
+        icon.style.left = '';
+        icon.style.bottom = '0px';
+        icon.style.animation = 'icon-animation 2s infinite linear'; 
+        actor.style.bottom = '0px';
+        actor.style.animation = '';
+    }
+
     function restartGame() {
-        // Limpar o conteúdo da pergunta matemática
         const mathQuestionDiv = document.getElementById('math-question');
         if (mathQuestionDiv) {
-            mathQuestionDiv.remove(); 
+            mathQuestionDiv.remove();
         }
+
+        resetPositions();
+    
+        scoreInterval = setInterval(() => {
+            updateScore();
+        }, 1000);
+    
+        gameOverInterval = setInterval(() => {
+            gameOverVerify();
+        }, 10);
     }
 
     function showGameOver() {
@@ -137,11 +184,15 @@ document.addEventListener('DOMContentLoaded', () => {
         gameOverMessage.addEventListener('click', () => location.reload());
     }
 
-    function changeiconImage() {
+    function changeIconImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
         const speedClass = Math.random() > 0.5 ? 'icon-fast' : 'icon-slow';
         icon.src = `./images/${images[randomIndex]}`;
         icon.className = `icon ${speedClass}`;
+
+        icon.style.animation = 'none';
+        void icon.offsetWidth;
+        icon.style.animation = '';
     }
 
     startButton.addEventListener('click', () => {
@@ -156,30 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
             actor.classList.add('jump');
         }
     });
-
-    const gameOver = setInterval(() => {
-        const iconPosition = icon.offsetLeft;
-        const actorPosition = Number(window.getComputedStyle(actor).bottom.replace('px', ''));
-
-        if (iconPosition <= 120 && iconPosition > 0 && actorPosition < 70) {
-            icon.style.left = `${iconPosition}px`;
-            icon.style.animation = 'none';
-
-            actor.style.bottom = `${actorPosition}px`;
-            actor.style.animation = 'none';
-
-            clearInterval(gameOver);
-            clearInterval(scoreInterval);
-            /* stopGame(); */
-
-            generateMathQuestion();
-            showMathQuestion();
-        }
-
-        if (iconPosition < 0) {
-            changeiconImage();
-        }
-    }, 10);
 
     loadLeaderboard(); 
 });
