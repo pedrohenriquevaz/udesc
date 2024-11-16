@@ -87,6 +87,43 @@ document.addEventListener('DOMContentLoaded', () => {
         showGameOver();
     }
 
+    function generateMathQuestion() {
+        const number1 = Math.floor(Math.random() * 30) + 1;
+        const number2 = Math.floor(Math.random() * 30) + 1;
+        const operator = ['+', '-', '*'][Math.floor(Math.random() * 3)];
+        currentQuestion = `${number1} ${operator} ${number2}`;
+        currentAnswer = eval(currentQuestion);
+    }
+
+    function showMathQuestion() {
+        const mathQuestionDiv = document.createElement('div');
+        mathQuestionDiv.id = 'math-question';
+        mathQuestionDiv.innerHTML = `
+            <p>Qual é o resultado de: ${currentQuestion}?</p>
+            <input type="number" id="math-answer" placeholder="Sua resposta" />
+            <button id="confirm-answer">Confirmar</button>
+        `;
+        gameBoard.appendChild(mathQuestionDiv);
+    
+        const confirmButton = document.getElementById('confirm-answer');
+        confirmButton.addEventListener('click', () => {
+            const playerAnswer = document.getElementById('math-answer').value;
+            if (parseInt(playerAnswer) === currentAnswer) {
+                restartGame();
+            } else {
+                stopGame();
+            }
+        });
+    }
+
+    function restartGame() {
+        // Limpar o conteúdo da pergunta matemática
+        const mathQuestionDiv = document.getElementById('math-question');
+        if (mathQuestionDiv) {
+            mathQuestionDiv.remove(); 
+        }
+    }
+
     function showGameOver() {
         let gameOverMessage = document.querySelector('.game-over');
         if (!gameOverMessage) {
@@ -95,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gameOverMessage.textContent = 'Você perdeu! Clique para retornar à tela inicial.';
             document.body.appendChild(gameOverMessage);
         }
-
+    
         gameOverMessage.style.display = 'block';
         gameOverMessage.addEventListener('click', () => location.reload());
     }
@@ -125,15 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const actorPosition = Number(window.getComputedStyle(actor).bottom.replace('px', ''));
 
         if (iconPosition <= 120 && iconPosition > 0 && actorPosition < 70) {
-            icon.style.animation = 'none';
             icon.style.left = `${iconPosition}px`;
+            icon.style.animation = 'none';
 
-            actor.style.animation = 'none';
             actor.style.bottom = `${actorPosition}px`;
+            actor.style.animation = 'none';
 
             clearInterval(gameOver);
             clearInterval(scoreInterval);
-            stopGame();
+            /* stopGame(); */
+
+            generateMathQuestion();
+            showMathQuestion();
         }
 
         if (iconPosition < 0) {

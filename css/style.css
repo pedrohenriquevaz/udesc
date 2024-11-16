@@ -280,7 +280,7 @@ h2 {
     padding: 15px 30px;
     font-size: 1.5rem;
     cursor: pointer;
-    background-color: #002fff;
+    background-color: rgb(233, 16, 16);
     color: white;
     border: none;
     border-radius: 5px;
@@ -295,7 +295,7 @@ h2 {
 }
 
 #restart-ranking-button:hover {
-    background-color: #2999bb;
+    background-color:  rgb(130, 22, 22);
     transform: translateY(-2px);
 }
 
@@ -423,4 +423,17 @@ h2 {
 
 .game-over:hover {
     background: rgba(255, 0, 0, 0.8);
+}
+
+#math-question {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
