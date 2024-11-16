@@ -44,10 +44,17 @@
     </div>
 
     <div class="game-board" style="display: none;">
+        <div id="math-question" style="display: none;">
+            <p>Qual é o resultado de: <span id="math-question-text"></span>?</p>
+            <input type="number" id="math-answer" placeholder="Sua resposta" />
+            <button id="confirm-answer">Confirmar</button>
+        </div>
+
         <div class="player-info">
             <span id="player-name-display"></span>
             <span id="score-display">Pontuação: 0</span>
         </div>
+        
         <img src="./images/actor.gif" class="actor">
         <img src="./images/fench.png" class="icon">
         <img src="./images/background.gif" class="background">

@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const images = ["fench.png", "js.png", "java.png", "php.png", "postgresql.png"];
     const audio = document.getElementById('background-music');
     const audioMenu = document.getElementById('background-music-menu');
+    const mathQuestionDiv = document.getElementById('math-question');
+    const questionText = document.getElementById('math-question-text');
+    const confirmButton = document.getElementById('confirm-answer');
 
     let selectedCharacter = './images/actor.gif';
     let score = 0;
@@ -131,16 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showMathQuestion() {
-        const mathQuestionDiv = document.createElement('div');
-        mathQuestionDiv.id = 'math-question';
-        mathQuestionDiv.innerHTML = `
-            <p>Qual é o resultado de: ${currentQuestion}?</p>
-            <input type="number" id="math-answer" placeholder="Sua resposta" />
-            <button id="confirm-answer">Confirmar</button>
-        `;
-        gameBoard.appendChild(mathQuestionDiv);
+        questionText.textContent = currentQuestion;
+        mathQuestionDiv.style.display = 'block';
     
-        const confirmButton = document.getElementById('confirm-answer');
         confirmButton.addEventListener('click', () => {
             const playerAnswer = document.getElementById('math-answer').value;
             if (parseInt(playerAnswer) === currentAnswer) {
