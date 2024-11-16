@@ -9,14 +9,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerNameInput = document.getElementById('player-name');
     const scoreDisplay = document.getElementById('score-display');
     const leaderboardList = document.getElementById('leaderboard-list');
-
     const images = ["fench.png", "js.png", "java.png", "php.png", "postgresql.png"];
+    const audio = document.getElementById('background-music');
+    const audioMenu = document.getElementById('background-music-menu');
+
     let selectedCharacter = './images/actor.gif';
     let score = 0;
     let scoreInterval = null;
     let gameActive = false;
     let playerName = '';
     let gameOverInterval;
+
+    audio.volume = 0.3;
+    audioMenu.volume = 0.3;
+
+    document.addEventListener('click', (event) => {
+        if(scoreInterval > 0) {
+
+        } else {
+        audioMenu.play();   
+        }
+    });
 
     function loadLeaderboard() {
         const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
@@ -50,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     startButton.addEventListener('click', () => {
+        audioMenu.pause();
         playerName = playerNameInput.value.trim();
         startGame();
     });
@@ -59,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Por favor, insira seu nome!");
             return;
         }
+
+        audio.play();
     
         actor.src = selectedCharacter;
         startScreen.style.display = 'none';
@@ -148,6 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
             mathQuestionDiv.remove();
         }
 
+        gameActive = true;
+
         resetPositions();
     
         scoreInterval = setInterval(() => {
@@ -192,6 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const actorPosition = Number(window.getComputedStyle(actor).bottom.replace('px', ''));
 
         if (iconPosition <= 120 && iconPosition > 0 && actorPosition < 70) {
+            gameActive = false;
+
             icon.style.left = `${iconPosition}px`;
             icon.style.animation = 'none';
 
