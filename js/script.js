@@ -28,13 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function saveLeaderboard(name, score) {
-        const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
-        leaderboard.push({ name, score });
-        leaderboard.sort((a, b) => b.score - a.score);
-        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-        loadLeaderboard();
+    loadLeaderboard(); 
+
+    function restartRanking() {
+        localStorage.removeItem('leaderboard');
     }
+
+    restartRankingButton.addEventListener('click', () => {
+        restartRanking();
+        location.reload();
+    });
 
     characterOptions.forEach(option => {
         option.addEventListener('click', (event) => {
@@ -46,28 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function gameOverVerify() {
-        const iconPosition = icon.offsetLeft;
-        const actorPosition = Number(window.getComputedStyle(actor).bottom.replace('px', ''));
-
-        if (iconPosition <= 120 && iconPosition > 0 && actorPosition < 70) {
-            icon.style.left = `${iconPosition}px`;
-            icon.style.animation = 'none';
-
-            actor.style.bottom = `${actorPosition}px`;
-            actor.style.animation = 'none';
-
-            clearInterval(gameOverInterval);
-            clearInterval(scoreInterval);
-
-            generateMathQuestion();
-            showMathQuestion();
-        }
-
-        if (iconPosition < 0) {
-            changeIconImage();
-        }
-    }
+    startButton.addEventListener('click', () => {
+        playerName = playerNameInput.value.trim();
+        startGame();
+    });
 
     function startGame() {
         if (!playerName) {
@@ -93,27 +78,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10);
     }
 
-    function restartRanking() {
-        localStorage.removeItem('leaderboard');
-    }
+    actor.addEventListener('animationend', () => actor.classList.remove('jump'));
 
-    restartRankingButton.addEventListener('click', () => {
-        restartRanking();
-        location.reload();
+    document.addEventListener('keydown', (event) => {
+        if (event.key === ' ') {
+            actor.classList.add('jump');
+        }
     });
+
+    function changeIconImage() {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const speedClass = Math.random() > 0.5 ? 'icon-fast' : 'icon-slow';
+        icon.src = `./images/${images[randomIndex]}`;
+        icon.className = `icon ${speedClass}`;
+
+        icon.style.animation = 'none';
+        void icon.offsetWidth;
+        icon.style.animation = '';
+    }
 
     function updateScore() {
         score += 1;
         scoreDisplay.textContent = `Score: ${score}`;
         scoreDisplay.classList.add('score-updated');
         setTimeout(() => scoreDisplay.classList.remove('score-updated'), 500);
-    }
-
-    function stopGame() {
-        gameActive = false;
-        clearInterval(scoreInterval);
-        saveLeaderboard(playerName, score);
-        showGameOver();
     }
 
     function generateMathQuestion() {
@@ -184,29 +172,41 @@ document.addEventListener('DOMContentLoaded', () => {
         gameOverMessage.addEventListener('click', () => location.reload());
     }
 
-    function changeIconImage() {
-        const randomIndex = Math.floor(Math.random() * images.length);
-        const speedClass = Math.random() > 0.5 ? 'icon-fast' : 'icon-slow';
-        icon.src = `./images/${images[randomIndex]}`;
-        icon.className = `icon ${speedClass}`;
-
-        icon.style.animation = 'none';
-        void icon.offsetWidth;
-        icon.style.animation = '';
+    function stopGame() {
+        gameActive = false;
+        clearInterval(scoreInterval);
+        saveLeaderboard(playerName, score);
+        showGameOver();
     }
 
-    startButton.addEventListener('click', () => {
-        playerName = playerNameInput.value.trim();
-        startGame();
-    });
+    function saveLeaderboard(name, score) {
+        const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+        leaderboard.push({ name, score });
+        leaderboard.sort((a, b) => b.score - a.score);
+        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+        loadLeaderboard();
+    }
 
-    actor.addEventListener('animationend', () => actor.classList.remove('jump'));
+    function gameOverVerify() {
+        const iconPosition = icon.offsetLeft;
+        const actorPosition = Number(window.getComputedStyle(actor).bottom.replace('px', ''));
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === ' ') {
-            actor.classList.add('jump');
+        if (iconPosition <= 120 && iconPosition > 0 && actorPosition < 70) {
+            icon.style.left = `${iconPosition}px`;
+            icon.style.animation = 'none';
+
+            actor.style.bottom = `${actorPosition}px`;
+            actor.style.animation = 'none';
+
+            clearInterval(gameOverInterval);
+            clearInterval(scoreInterval);
+
+            generateMathQuestion();
+            showMathQuestion();
         }
-    });
 
-    loadLeaderboard(); 
+        if (iconPosition < 0) {
+            changeIconImage();
+        }
+    }
 });
