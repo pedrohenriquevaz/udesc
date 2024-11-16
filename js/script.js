@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameActive = false;
     let playerName = '';
     let gameOverInterval;
+    let correctResponses = 0;
 
     audio.volume = 0.3;
     audioMenu.volume = 0.3;
@@ -73,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Por favor, insira seu nome!");
             return;
         }
+        gameActive = true;
 
         audio.play();
     
@@ -81,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gameBoard.style.display = 'block';
         score = 0;
     
-        scoreDisplay.textContent = `Score: ${score}`;
+        scoreDisplay.textContent = `Pontuação: ${score}`;
     
         scoreInterval = setInterval(() => {
             updateScore();
@@ -115,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateScore() {
         score += 1;
-        scoreDisplay.textContent = `Score: ${score}`;
+        scoreDisplay.textContent = `Pontuação: ${score}`;
         scoreDisplay.classList.add('score-updated');
         setTimeout(() => scoreDisplay.classList.remove('score-updated'), 500);
     }
@@ -142,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmButton.addEventListener('click', () => {
             const playerAnswer = document.getElementById('math-answer').value;
             if (parseInt(playerAnswer) === currentAnswer) {
+                correctResponses++;
+                score += 3;
                 restartGame();
             } else {
                 stopGame();
@@ -158,11 +162,15 @@ document.addEventListener('DOMContentLoaded', () => {
         actor.style.animation = '';
     }
 
-    function restartGame() {
+    function removeQuestion() {
         const mathQuestionDiv = document.getElementById('math-question');
         if (mathQuestionDiv) {
             mathQuestionDiv.remove();
         }
+    }
+
+    function restartGame() {
+        removeQuestion();
 
         gameActive = true;
 
@@ -178,11 +186,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showGameOver() {
+        removeQuestion();
+
         let gameOverMessage = document.querySelector('.game-over');
         if (!gameOverMessage) {
             gameOverMessage = document.createElement('div');
             gameOverMessage.className = 'game-over';
-            gameOverMessage.textContent = 'Você perdeu! Clique para retornar à tela inicial.';
+            
+            if(correctResponses === 0) 
+                gameOverMessage.textContent = 'Você perdeu sem acertar nenhuma pergunta! Clique para retornar à tela inicial.';
+            else {
+                if(correctResponses === 1)
+                    gameOverMessage.textContent = 'Você perdeu, acertando ' + correctResponses + ' pergunta! Clique para retornar à tela inicial.';
+                else 
+                    gameOverMessage.textContent = 'Você perdeu, acertando ' + correctResponses + ' perguntas! Clique para retornar à tela inicial.';
+            }
+
             document.body.appendChild(gameOverMessage);
         }
     
