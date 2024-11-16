@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function removeQuestion() {
-        const mathQuestionDiv = document.getElementById('math-question');
         if (mathQuestionDiv) {
             mathQuestionDiv.remove();
         }
