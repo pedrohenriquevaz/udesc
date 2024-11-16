@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameBoard = document.querySelector('.game-board');
     const startScreen = document.querySelector('.start-screen');
     const startButton = document.getElementById('start-button');
+    const restartRankingButton = document.getElementById('restart-ranking-button');
     const characterOptions = document.querySelectorAll('.character-option');
     const playerNameInput = document.getElementById('player-name');
     const scoreDisplay = document.getElementById('score-display');
@@ -63,6 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
+    function restartRanking() {
+        localStorage.removeItem('leaderboard');
+    }
+
+    restartRankingButton.addEventListener('click', () => {
+        restartRanking();
+        location.reload();
+    });
+
     function updateScore() {
         score += 1;
         scoreDisplay.textContent = `Score: ${score}`;
@@ -96,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         icon.src = `./images/${images[randomIndex]}`;
         icon.className = `icon ${speedClass}`;
     }
+
     startButton.addEventListener('click', () => {
         playerName = playerNameInput.value.trim();
         startGame();

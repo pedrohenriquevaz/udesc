@@ -13,7 +13,7 @@ body {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
     color: rgb(183, 247, 9);
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     opacity: 0;
     animation: fadeInUp 1.5s forwards;
 }
@@ -22,10 +22,6 @@ body {
     font-size: 2rem;
     margin-top: 10px;
 }
-
-#welcome-text {
-    font-size: 3rem;
-} 
 
 .start-screen {
     position: fixed;
@@ -203,8 +199,11 @@ h2 {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); 
     letter-spacing: 2px;
     animation: pulse 2s infinite; 
-    margin-bottom: 30px; 
     text-transform: uppercase; 
+    position: fixed;
+    top: 20px;
+    transform: translateX(-50%);
+    z-index: 100;
 }
 
 @keyframes pulse {
@@ -223,7 +222,7 @@ h2 {
 }
 
 #start-button {
-    margin-top: 20px;
+    /* margin-top: 50px; */
     padding: 15px 30px;
     font-size: 1.5rem;
     cursor: pointer;
@@ -233,7 +232,12 @@ h2 {
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease, transform 0.2s;
-    animation: fadeInUp 1.5s forwards, pulseButton 1.5s infinite alternate;
+    animation: fadeInUp 1.5s forwards;
+    position: fixed;
+    bottom: 75px;
+    transform: translateX(-50%);
+    z-index: 100;
+    left: 30%;
 }
 
 @keyframes pulseButton {
@@ -268,6 +272,34 @@ h2 {
 }
 
 #start-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#restart-ranking-button {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: #002fff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s;
+    animation: fadeInUp 1.5s forwards;
+    position: fixed;
+    bottom: 75px;
+    transform: translateX(-50%);
+    z-index: 100;
+    right: 30%;
+}
+
+#restart-ranking-button:hover {
+    background-color: #2999bb;
+    transform: translateY(-2px);
+}
+
+#restart-ranking-button:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -377,6 +409,17 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
+
+/* @keyframes fadeIn-Over {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+} */
 
 .game-over:hover {
     background: rgba(255, 0, 0, 0.8);
