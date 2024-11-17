@@ -38,14 +38,30 @@
             <img src="./images/zero-motoca.gif" class="character-option" data-character="./images/zero-motoca.gif" alt="Personagem 1">
             <img src="./images/zero.gif" class="character-option" data-character="./images/zero.gif" alt="Personagem 2">
             <img src="./images/actor.gif" class="character-option" data-character="./images/actor.gif" alt="Personagem 3">
+            <img src="./images/sonic.gif" class="character-option" data-character="./images/sonic.gif" alt="Personagem 4">
         </div>
 
         <input type="text" id="player-name" placeholder="Digite seu nome" />
 
-        <button id="start-button">Começar Jogo</button>
-        <button id="restart-ranking-button">Reiniciar Ranking</button>
-        
-        <!-- Leaderboard -->
+        <div>
+            <button id="start-button">Começar Jogo</button>
+            <button id="restart-ranking-button">Reiniciar Ranking</button>
+            <div class="table center">
+                <div class="monitor-wrapper center">
+                    <div class="monitor center">
+                        <h3 id="game-instruction">Instruções de Jogo</h3>
+                        <p id="game-instruction-text">
+                            1. Use tecla "espaço" para pular;<br><br>
+                            2. A cada segundo ganhará 1 ponto;<br><br>
+                            3. Ao acertar um obstáculo, você será desafiado com uma conta matemática;<br><br>
+                            4. Se responder corretamente, você receberá mais 3 pontos;<br><br>
+                            5. Ao perder, será redirecionado<br> para o início, e poderá consultar sua posição no ranking. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="leaderboard">
             <h2>Ranking</h2>
             <ul id="leaderboard-list"></ul>

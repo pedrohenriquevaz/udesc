@@ -133,3 +133,12 @@
       transform: translateY(-10px); /* Pulo para cima novamente */
     }
 }
+
+@keyframes move {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

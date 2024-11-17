@@ -45,30 +45,30 @@ h2 {
     top: 5%;
     left: 50%;
     transform: translateX(-50%);
-    transform-origin: center; /* Garante que a escala seja centrada */
+    transform-origin: center;
     place-items: center;
-    color: #082bf2;
+    color: #0000CD; 
     font-weight: 900;
     text-transform: uppercase;
     font-size: clamp(3rem, 10vw, 6rem);
     line-height: 0.75em;
     text-align: center;
-    animation: pulseText 2s infinite;
     text-shadow: 
-      3px 1px 1px #fffb00, 
-      2px 2px 1px #fffb00, 
-      4px 2px 1px #fffb00, 
-      3px 3px 1px #f6ed6f, 
-      5px 3px 1px #fffb00, 
-      4px 4px 1px #f6ed6f,
-      6px 4px 1px #fffb00, 
-      5px 5px 1px #f6ed6f, 
-      7px 5px 1px #f6ed6f,
-      6px 6px 1px #fffb00, 
-      8px 6px 1px #fffb00, 
-      7px 7px 1px #f6ed6f, 
-      9px 7px 1px #fffb00;
-  }  
+        3px 1px 1px #0000CD, 
+        2px 2px 1px #0000CD, 
+        4px 2px 1px #0000CD, 
+        3px 3px 1px #0000CD, 
+        5px 3px 1px #0000CD, 
+        4px 4px 1px #ffcc00, 
+        6px 4px 1px #0000CD, 
+        5px 5px 1px #0000CD, 
+        7px 5px 1px #ffcc00, 
+        6px 6px 1px #ffcc00, 
+        8px 6px 1px #ffcc00, 
+        7px 7px 1px #0000CD, 
+        9px 7px 1px #ffcc00;
+}
+ 
 
 .welcome-text span {
   display: block;
@@ -79,9 +79,9 @@ h2 {
   content: attr(data-text);
   position: absolute;
   text-shadow: 
-    2px 2px 1px #fffb00, 
+    2px 2px 1px #ffffff, 
     -1px -1px 1px #ffcc00,
-    -2px 2px 1px #ffcc00, 
+    -2px 2px 1px #0c12c2, 
     1px -1px 1px #ffcc00;
   z-index: 1;
 }
@@ -164,13 +164,16 @@ h2 {
 #start-button {
     width: 270px;
     height: 60px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
     border-color: #fffb00;
     outline: none;
     color: #f7f8fc;
-    background: #132ad7;
+    background: #333;
     cursor: pointer;
     position: fixed;
     bottom: 75px;
+    bottom: 100px;
     transform: translateX(-50%);
     animation: fadeInUp 1.5s forwards;
     z-index: 100;
@@ -196,7 +199,7 @@ h2 {
 }
 
 #start-button:active {
-    color: #1323d8
+    color: #333
 }
 
 #start-button:active:after {
@@ -213,7 +216,7 @@ h2 {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #121097;
+    background: #000000;
     left: 0;
     top: 0;
     border-radius: 10px;
@@ -223,16 +226,18 @@ h2 {
     width: 270px;
     height: 60px;
     border-color: #fffb00;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
     outline: none;
     color: #f7f8fc;
     background: #d71313;
     cursor: pointer;
     position: fixed;
-    bottom: 75px;
+    bottom: 100px;
     transform: translateX(-50%);
     animation: fadeInUp 1.5s forwards;
     z-index: 100;
-    right: 30%;
+    left: 52%;
     border-radius: 10px;
 }
 
@@ -254,7 +259,7 @@ h2 {
 }
 
 #restart-ranking-button:active {
-    color: #1323d8
+    color: #333
 }
 
 #restart-ranking-button:active:after {
@@ -271,7 +276,7 @@ h2 {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #121097;
+    background: #000000;
     left: 0;
     top: 0;
     border-radius: 10px;
@@ -301,9 +306,11 @@ h2 {
     position: fixed;
     top: 10%; 
     right: 10%; 
-    background: rgba(0, 0, 0, 0.6);
-    padding: 15px;
-    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6); 
+    padding: 20px; 
+    border: 3px solid #d5f008;
+    border-radius: 10px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); 
     color: white;
     max-width: 300px;
     z-index: 20; 
@@ -313,14 +320,66 @@ h2 {
     text-align: center;
     font-size: 1.5rem;
     margin-bottom: 15px;
+    font-weight: bold;
+    color: #d5f008; 
 }
 
 #leaderboard-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    font-size: 1rem; 
 }
 
 #leaderboard-list li {
     margin-bottom: 10px;
+    font-size: 1.1rem; 
+    text-align: center;
+}
+
+
+#game-instruction {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2.5px solid #d5f008;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    max-width: 300px;
+    z-index: 20;
+}
+
+#game-instruction h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+#game-instruction {
+    font-size: 1.5rem;
+    top: 10%; 
+    left: 5%; 
+    line-height: 1.5;
+}
+
+#game-instruction-text {
+    font-size: 0.9rem;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2.5px solid #d5f008;
+    border-radius: 15px;
+    padding: 20px;
+    top: 22%; 
+    left: 3%; 
+    line-height: 1.4;
+    text-align: justify;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 300px; 
+}
+
+#game-instruction-text:hover {
+    border-color: #ffcc00;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease; 
 }
