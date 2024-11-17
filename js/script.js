@@ -159,20 +159,18 @@ document.addEventListener('DOMContentLoaded', () => {
         questionText.textContent = currentQuestion;
         mathQuestionDiv.style.display = 'block';
     
-        // Remover event listeners antigos, se existirem
         const newConfirmButton = confirmButton.cloneNode(true); 
         confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
     
-        // Adicionar um novo evento ao botão
         newConfirmButton.addEventListener('click', () => {
             const playerAnswer = document.getElementById('math-answer').value;
     
             if (parseInt(playerAnswer) === currentAnswer) {
                 correctResponses++;
                 score += 3;
-                restartGame();  // Reiniciar o jogo após acerto
+                restartGame(); 
             } else {
-                stopGame();  // Parar o jogo se a resposta estiver errada
+                stopGame(); 
             }
         });
     }
@@ -188,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function removeQuestion() {
         if (mathQuestionDiv) {
-            mathQuestionDiv.style.display = 'none';  // Apenas esconder a div
+            mathQuestionDiv.style.display = 'none';
         }
     }
 
@@ -255,8 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         if (iconPosition <= 120 && iconPosition > 0 && actorPosition < 70) {
             gameActive = false;
-    
-            // Parar as animações ao colidir
+
             icon.style.left = `${iconPosition}px`;
             icon.style.animation = 'none';
     
@@ -266,12 +263,11 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(gameOverInterval);
             clearInterval(scoreInterval);
     
-            generateMathQuestion();  // Gerar uma nova questão
-            showMathQuestion();  // Exibir a questão na tela
+            showMathQuestion(); 
         }
     
         if (iconPosition < 0) {
-            changeIconImage();  // Trocar a imagem do ícone
+            changeIconImage(); 
         }
     }
 });
