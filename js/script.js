@@ -154,17 +154,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showMathQuestion() {
+        // Gerar uma nova questão matemática
+        generateMathQuestion();
         questionText.textContent = currentQuestion;
         mathQuestionDiv.style.display = 'block';
     
-        confirmButton.addEventListener('click', () => {
+        // Remover event listeners antigos, se existirem
+        const newConfirmButton = confirmButton.cloneNode(true); 
+        confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
+    
+        // Adicionar um novo evento ao botão
+        newConfirmButton.addEventListener('click', () => {
             const playerAnswer = document.getElementById('math-answer').value;
+    
             if (parseInt(playerAnswer) === currentAnswer) {
                 correctResponses++;
                 score += 3;
-                restartGame();
+                restartGame();  // Reiniciar o jogo após acerto
             } else {
-                stopGame();
+                stopGame();  // Parar o jogo se a resposta estiver errada
             }
         });
     }
@@ -180,25 +188,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function removeQuestion() {
         if (mathQuestionDiv) {
-            mathQuestionDiv.remove();
+            mathQuestionDiv.style.display = 'none';  // Apenas esconder a div
         }
     }
 
     function restartGame() {
-        removeQuestion();
-
-        gameActive = true;
-
-        resetPositions();
+        currentQuestion = '';
+        currentAnswer = null;
     
+        removeQuestion();
+    
+        gameActive = true;
+        resetPositions();
+     
         scoreInterval = setInterval(() => {
             updateScore();
         }, 1000);
-    
+     
         gameOverInterval = setInterval(() => {
             gameOverVerify();
         }, 10);
-    }
+    } 
 
     function showGameOver() {
         removeQuestion();
@@ -242,25 +252,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function gameOverVerify() {
         const iconPosition = icon.offsetLeft;
         const actorPosition = Number(window.getComputedStyle(actor).bottom.replace('px', ''));
-
+    
         if (iconPosition <= 120 && iconPosition > 0 && actorPosition < 70) {
             gameActive = false;
-
+    
+            // Parar as animações ao colidir
             icon.style.left = `${iconPosition}px`;
             icon.style.animation = 'none';
-
+    
             actor.style.bottom = `${actorPosition}px`;
             actor.style.animation = 'none';
-
+    
             clearInterval(gameOverInterval);
             clearInterval(scoreInterval);
-
-            generateMathQuestion();
-            showMathQuestion();
+    
+            generateMathQuestion();  // Gerar uma nova questão
+            showMathQuestion();  // Exibir a questão na tela
         }
-
+    
         if (iconPosition < 0) {
-            changeIconImage();
+            changeIconImage();  // Trocar a imagem do ícone
         }
     }
 });
