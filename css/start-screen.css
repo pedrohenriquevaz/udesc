@@ -40,33 +40,35 @@ h2 {
 }
 
 .welcome-text {
-  max-width: 1200px;
-  position: absolute;
-  top: 5%; 
-  left: 50%;
-  transform: translateX(-50%);  
-  place-items: center;
-  color: #082bf2;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: clamp(3rem, 10vw, 6rem);
-  line-height: 0.75em;
-  text-align: center;
-  text-shadow: 
-    3px 1px 1px #fffb00, 
-    2px 2px 1px #fffb00, 
-    4px 2px 1px #fffb00, 
-    3px 3px 1px #f6ed6f, 
-    5px 3px 1px #fffb00, 
-    4px 4px 1px #f6ed6f,
-    6px 4px 1px #fffb00, 
-    5px 5px 1px #f6ed6f, 
-    7px 5px 1px #f6ed6f,
-    6px 6px 1px #fffb00, 
-    8px 6px 1px #fffb00, 
-    7px 7px 1px #f6ed6f, 
-    9px 7px 1px #fffb00;
-}
+    max-width: 1200px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: center; /* Garante que a escala seja centrada */
+    place-items: center;
+    color: #082bf2;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 0.75em;
+    text-align: center;
+    animation: pulseText 2s infinite;
+    text-shadow: 
+      3px 1px 1px #fffb00, 
+      2px 2px 1px #fffb00, 
+      4px 2px 1px #fffb00, 
+      3px 3px 1px #f6ed6f, 
+      5px 3px 1px #fffb00, 
+      4px 4px 1px #f6ed6f,
+      6px 4px 1px #fffb00, 
+      5px 5px 1px #f6ed6f, 
+      7px 5px 1px #f6ed6f,
+      6px 6px 1px #fffb00, 
+      8px 6px 1px #fffb00, 
+      7px 7px 1px #f6ed6f, 
+      9px 7px 1px #fffb00;
+  }  
 
 .welcome-text span {
   display: block;
