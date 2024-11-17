@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(scoreInterval > 0) {
             //faz nada
         } else {
-            audioMenu.play();   
+        audioMenu.play();   
         }
     });
 
@@ -109,7 +109,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function changeIconImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
-        const speedClass = Math.random() > 0.5 ? 'icon-fast' : 'icon-slow';
+        const randomSpeed = Math.floor(Math.random() * 5);
+
+        let speedClass;
+        switch (randomSpeed) {
+        case 0:
+            speedClass = 'icon-fast';
+            break;
+        case 1:
+            speedClass = 'icon-slow';
+            break;
+        case 2:
+            speedClass = 'icon-normal';
+            break;
+        case 3:
+            speedClass = 'icon-most-fast';
+            break;
+        case 4:
+            speedClass = 'icon-impossible';
+            break;
+        }
+
         icon.src = `./images/${images[randomIndex]}`;
         icon.className = `icon ${speedClass}`;
 
