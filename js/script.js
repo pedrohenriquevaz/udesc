@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', (event) => {
         if(scoreInterval > 0) {
-
+            //faz nada
         } else {
-        audioMenu.play();   
+            audioMenu.play();   
         }
     });
 

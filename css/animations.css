@@ -68,3 +68,58 @@
         text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); 
     }
 }
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseText {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes icon-animation {
+    from {
+        right: -100px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+.actor {
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+}
+
+@keyframes jump {
+    0% {
+        bottom: 0;
+    }
+    40%, 50%, 60% {
+        bottom: 180px;
+    }
+    100% {
+        bottom: 0;
+    }
+}
