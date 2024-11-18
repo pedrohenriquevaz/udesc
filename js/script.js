@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function changeIconImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
         const randomSpeed = Math.floor(Math.random() * 5);
-
+        // altera velocidade
         let speedClass;
         switch (randomSpeed) {
         case 0:
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showMathQuestion() {
-        // Gerar uma nova questão matemática
+        // Gera uma nova questão
         generateMathQuestion();
         questionText.textContent = currentQuestion;
         mathQuestionDiv.style.display = 'block';
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
             if (parseInt(playerAnswer) === currentAnswer) {
                 correctResponses++;
-                score += 3;
+                score += 3; // Se acertar, ganha +3 pontos.
                 restartGame(); 
             } else {
                 stopGame(); 
