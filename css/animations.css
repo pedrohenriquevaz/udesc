@@ -1,15 +1,16 @@
+/* Nem é utilizado */
 @keyframes letterJump {
     0%, 100% {
-      transform: translateY(0); /* Posição inicial e final */
+      transform: translateY(0);
     }
     25% {
-      transform: translateY(-10px); /* Pulo para cima */
+      transform: translateY(-10px);
     }
     50% {
-      transform: translateY(0); /* Retorno à posição original */
+      transform: translateY(0); 
     }
     75% {
-      transform: translateY(-10px); /* Pulo para cima novamente */
+      transform: translateY(-10px);
     }
 }
 
@@ -116,21 +117,6 @@
     }
     100% {
         bottom: 0;
-    }
-}
-
-@keyframes letterJump {
-    0%, 100% {
-      transform: translateY(0); /* Posição inicial e final */
-    }
-    25% {
-      transform: translateY(-10px); /* Pulo para cima */
-    }
-    50% {
-      transform: translateY(0); /* Retorno à posição original */
-    }
-    75% {
-      transform: translateY(-10px); /* Pulo para cima novamente */
     }
 }
 
